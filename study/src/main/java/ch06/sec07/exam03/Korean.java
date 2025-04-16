@@ -6,8 +6,7 @@ public class Korean {
     String ssn;
 
 //  Alt + Insert
-    public Korean(String nation, String name, String ssn) {
-        this.nation = nation;
+    public Korean(String name, String ssn) {
         this.name = name;
         this.ssn = ssn;
     }
