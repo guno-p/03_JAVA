@@ -6,6 +6,7 @@ public class Button2 {
     }
 
     private ClickListener clickListener;
+
     public void setClickListener(ClickListener clickListener) {
         this.clickListener = clickListener;
     }
