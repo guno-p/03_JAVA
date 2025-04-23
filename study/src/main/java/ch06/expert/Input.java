@@ -23,17 +23,22 @@ public class Input {
 
     public static int readInt(String title) {
         System.out.print(title);
-        return scanner.nextInt();
+//        int input = scanner.nextInt();
+//        scanner.nextLine();
+        // scanner nextInt() 는 int 만 가져오고 \n 은 안가져온다.
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static boolean confirm(String title, boolean defaultValue) {
         System.out.print(title);
+
         if (defaultValue) {
             System.out.print("(Y/n): ");
         }
         else {
             System.out.print("(y/N): ");
         }
+
         String value = scanner.nextLine();
 
         if(value.isEmpty()) {
@@ -47,7 +52,6 @@ public class Input {
         }
     }
     public static boolean confirm(String title) {
-        System.out.print(title);
         return confirm(title, true);
     }
 }
