@@ -1,30 +1,28 @@
 package ch15.sec06.exam02;
 
-import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class QueueExample {
     public static void main(String[] args) {
-        Queue<Message> queue = new ArrayDeque<Message>();
+        Queue<Message> q = new LinkedList<>();
+        q.offer(new Message("sendMail", "홍길동"));
+        q.offer(new Message("sendSMS", "신용권"));
+        q.offer(new Message("sendKakaotalk", "김자바"));
 
-        queue.offer(new Message("sendMail", "홍길동"));
-        queue.offer(new Message("sendSMS", "건호"));
-        queue.offer(new Message("sendKaKao", "동현"));
-
-        while (!queue.isEmpty()) {
-            Message message = queue.poll();
+        while (!q.isEmpty()) {
+            Message message = q.poll();
             switch (message.command) {
                 case "sendMail":
-                    System.out.println(message.to + "에게 메일 보내기");
+                    System.out.println(message.to + "님에게 메일을 보냅니다.");
                     break;
                 case "sendSMS":
-                    System.out.println(message.to + "에게 SMS");
+                    System.out.println(message.to + "님에게 SMS를 보냅니다.");
                     break;
-                case "sendKaKao":
-                    System.out.println(message.to + "에게 카카오");
+                case "sendKakaotalk":
+                    System.out.println(message.to + "님에게 카카오톡을 보냅니다.");
                     break;
             }
         }
-
     }
 }
