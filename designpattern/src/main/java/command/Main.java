@@ -4,11 +4,18 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        FileService fs = new FileService();
+
         Command[] commands = {
-                new AddCommand(),
-                new OpenCommand(),
-                new PrintCommand(),
-                new ExitCommand()
+//                new AddCommand(),
+                () -> System.out.println("Add Command"),
+//                new OpenCommand(),
+                fs::open, // () -> fs.open()
+                // 메서드의 시그니처가 맞다면 메서드 참조로 사용
+//                new PrintCommand(),
+                fs::print, // () -> fs.print()
+//                new ExitCommand(),
+                Main::exit // Main.exit()
         };
 
         while(true) {
@@ -24,7 +31,21 @@ public class Main {
             * 실행코드에는 변화가 없어야 하는것이 핵심이다.
             * */
             commands[select-1].execute();
-//          이 execute는 변화가 없어야함.
+//          이 execute 는 변화가 없어야함.
+        }
+    }
+
+    public static void exit() {
+        // 매개변수가 없고 리턴도 보이드이기 때문에
+        // Command 인터페이스 람다 가능
+        Scanner sc = new Scanner(System.in);
+        System.out.println("종료할까요?(Y/n)");
+        String answer = sc.nextLine();
+
+        sc.close();
+
+        if(answer.isEmpty() || answer.equalsIgnoreCase("Y")) {
+            System.exit(0);
         }
     }
 }
